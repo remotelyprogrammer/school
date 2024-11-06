@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+<body>
+    <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+
+    <p><strong>Email:</strong> {{ student.personal_email }}</p>
+
+    <h2>Contacts</h2>
+    <ul>
+        {% for contact in student.contacts.all %}
+            <li>{{ contact.full_name }} ({{ contact.relationship }}) - {{ contact.mobile_number }}</li>
+        {% empty %}
+            <p>No contacts available.</p>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'students:add_contact' student.pk %}">Add New Contact</a>
+</body>
+</html>
